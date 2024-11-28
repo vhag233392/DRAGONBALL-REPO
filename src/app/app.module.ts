@@ -7,21 +7,24 @@ import { CharacterCardComponent } from './character-card/character-card.componen
 import { MenuPersonajesComponent } from './menu-personajes/menu-personajes.component';
 import {DragonBServiceService} from './dragon-bservice.service';
 import { MenuTranformacionesComponent } from './menu-tranformaciones/menu-tranformaciones.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CharacterCardComponent,
     MenuPersonajesComponent,
-    MenuTranformacionesComponent
+    MenuTranformacionesComponent,
+    LoginComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        FormsModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   providers: [DragonBServiceService],
   bootstrap: [AppComponent]
 })
