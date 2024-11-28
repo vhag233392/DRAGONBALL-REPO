@@ -1,22 +1,29 @@
-<div>
-  <h1>Transformaciones de {{ personajeName }}</h1>
-</div>
+<div *ngIf="transformaciones.length > 0">
+  <h2>{{ personajeName }}</h2>
 
-<div class="transformaciones">
-  <div *ngFor="let transformacion of transformaciones">
-    <div class="transformacion-card">
-      <img [src]="transformacion.image" alt="{{ transformacion.name }}">
-      <h4>{{ transformacion.name }}</h4>
+  <!-- Mostrar la primera transformación del personaje -->
+  <div class="transformacion-card">
+    <img [src]="currentTransformacion.image" alt="{{ currentTransformacion.name }}">
+    <h4>{{ currentTransformacion.name }}</h4>
 
-      <p>Ki:
-        <input type="number" [(ngModel)]="transformacion.ki" (ngModelChange)="onKiChange(transformacion)">
-      </p>
+    <!-- Campo de entrada para cambiar el valor de Ki -->
+    <p>Ki:
+      <input
+        type="text"
+        [(ngModel)]="currentTransformacion.ki"
+        placeholder="Ingrese nuevo Ki">
+    </p>
 
-      <!-- Mostrar el valor de KI en un h1 -->
-      <h1>{{ transformacion.ki }}</h1>
-    </div>
+    <!-- Botón para guardar el nuevo valor de Ki -->
+    <button (click)="saveKi(currentTransformacion)">Guardar Ki</button>
+
+    <!-- Mostrar el valor de Ki guardado -->
+    <h3>Valor de Ki guardado: {{ currentTransformacion.ki }}</h3>
   </div>
 
-
-
+  <!-- Botones para navegar entre los personajes -->
+  <div class="navigation-buttons">
+    <button (click)="previousPersonaje()" [disabled]="personajeId <= 1">Anterior</button>
+    <button (click)="nextPersonaje()">Siguiente</button>
+  </div>
 </div>

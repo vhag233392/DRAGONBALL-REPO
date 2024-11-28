@@ -13,11 +13,12 @@ import {Input} from "@angular/core";
 })
 export class MenuTranformacionesComponent implements OnInit{
 
-  personajeId: number | null = null;
-  @Input() transformaciones: any[] = [];
+  personajeId: number = 0;
   personajeName: string = '';
+  transformaciones: any[] = [];
+  currentTransformacion: any = {};
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) {}
+  constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
 
   ngOnInit(): void {
     // Obtener el ID del personaje de la URL
@@ -30,17 +31,33 @@ export class MenuTranformacionesComponent implements OnInit{
         .subscribe((data: any) => {
           this.transformaciones = data.transformations;
           this.personajeName = data.name;
+
+          // Establecer la primera transformación como la actual
+          this.currentTransformacion = this.transformaciones[0];
         });
-
-
     }
-
-
   }
 
-  onKiChange(transformacion: any): void {
-    console.log(`El nuevo valor de Ki de ${transformacion.name} es: ${transformacion.ki}`);
-    // Aquí puedes hacer algo con el nuevo valor de ki, como actualizarlo en la API si es necesario
-    // this.dragonBService.actualizarKi(transformacion.id, transformacion.ki).subscribe(...);
+  // Función para ir al siguiente personaje
+  nextPersonaje(): void {
+    const nextId = this.personajeId + 1;  // Incrementar el ID (ajustar según tu lógica)
+    this.router.navigate([`/transformaciones/${nextId}`]).then(() => {
+      window.location.reload();  // Forzar la recarga de la página
+    });
+  }
+
+  // Función para ir al personaje anterior
+  previousPersonaje(): void {
+    const previousId = this.personajeId - 1;
+    if (previousId > 0) {
+      this.router.navigate([`/transformaciones/${previousId}`]).then(() => {
+        window.location.reload();  // Forzar la recarga de la página
+      });
+    }
+  }
+
+  // Función para guardar el valor de Ki en localStorage
+  saveKi(transformacion: any): void {
+    localStorage.setItem(`ki-${transformacion.id}`, transformacion.ki);
   }
 }
