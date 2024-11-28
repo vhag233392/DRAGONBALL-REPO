@@ -14,4 +14,13 @@ export class DragonBServiceService {
   obtenerPersonajes(): Observable<any> {
     return this.http.get<any[]>(this.apiUrl);
   }
+
+  actualizarKi(id: number, ki: string): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/transformaciones/${id}`, { ki });
+  }
+
+  obtenerTransformaciones(personajeId: number): Observable<any> {
+    const url = `${this.apiUrl}/${personajeId}`;  // Crear la URL usando el id del personaje
+    return this.http.get<any>(url);  // Realizar la solicitud GET
+  }
 }

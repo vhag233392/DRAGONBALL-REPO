@@ -1,2 +1,22 @@
-<p>menu-tranformaciones works!</p>
-0909
+<div>
+  <h1>Transformaciones de {{ personajeName }}</h1>
+</div>
+
+<div class="transformaciones">
+  <div *ngFor="let transformacion of transformaciones">
+    <div class="transformacion-card">
+      <img [src]="transformacion.image" alt="{{ transformacion.name }}">
+      <h4>{{ transformacion.name }}</h4>
+
+      <p>Ki:
+        <input type="number" [(ngModel)]="transformacion.ki" (ngModelChange)="onKiChange(transformacion)">
+      </p>
+
+      <!-- Mostrar el valor de KI en un h1 -->
+      <h1>{{ transformacion.ki }}</h1>
+    </div>
+  </div>
+
+
+
+</div>

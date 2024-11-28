@@ -1,3 +1,12 @@
-<input  type="text">
-<button> ENTER </button>
-<app-character-card *ngFor="let personajes of personajes" [personaje]="personajes"></app-character-card>
+<input
+  type="text"
+  placeholder="Busca un personaje"
+  [(ngModel)]="terminoBusqueda"
+  (input)="buscarPersonaje(terminoBusqueda)"/>
+
+<div>
+  <app-character-card
+    *ngFor="let personaje of personajesFiltrados"
+    [personaje]="personaje">
+  </app-character-card>
+</div>

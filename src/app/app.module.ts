@@ -7,6 +7,7 @@ import { CharacterCardComponent } from './character-card/character-card.componen
 import { MenuPersonajesComponent } from './menu-personajes/menu-personajes.component';
 import {DragonBServiceService} from './dragon-bservice.service';
 import { MenuTranformacionesComponent } from './menu-tranformaciones/menu-tranformaciones.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -15,11 +16,12 @@ import { MenuTranformacionesComponent } from './menu-tranformaciones/menu-tranfo
     MenuPersonajesComponent,
     MenuTranformacionesComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule
+    ],
   providers: [DragonBServiceService],
   bootstrap: [AppComponent]
 })

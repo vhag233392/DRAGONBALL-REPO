@@ -13,4 +13,10 @@ export class CharacterCardComponent {
   constructor(private router: Router) {
   }
   @Input() personaje: any;
+
+  verTransformaciones(id: number): void {
+    console.log(`Redirigiendo a las transformaciones del personaje con ID: ${id}`);
+    this.router.navigate(['/transformaciones', id]);
+    // Aquí puedes agregar la lógica de redirección (usando el router, por ejemplo)
+  }
 }

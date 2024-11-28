@@ -5,7 +5,7 @@ import {MenuPersonajesComponent} from './menu-personajes/menu-personajes.compone
 
 const routes: Routes = [
   {path: '', component: MenuPersonajesComponent},
-  {path: 'transformaciones', component: MenuTranformacionesComponent},
+  {path: 'transformaciones/:id', component: MenuTranformacionesComponent},
 ];
 
 @NgModule({
